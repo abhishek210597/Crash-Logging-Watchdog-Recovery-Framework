@@ -1,0 +1,800 @@
+# Project Prompt: Crash Logging, Watchdog & Recovery Framework (Fault Handling, Debugging & System Reliability)
+
+Build a production-grade **Crash Logging, Watchdog & Recovery Framework** designed for embedded systems, Linux applications, robotics, IoT devices, autonomous systems, and distributed services.
+
+The framework should detect crashes, collect diagnostics, automatically recover from failures, and provide developers with comprehensive debugging information.
+
+---
+
+## Primary Goal
+
+Develop a modular fault-tolerant framework that continuously monitors application health, detects failures, stores detailed crash information, and performs automatic recovery while minimizing downtime.
+
+The architecture should emphasize:
+
+* High reliability
+* Low overhead
+* Extensibility
+* Thread safety
+* Cross-platform compatibility
+* Clean APIs
+* Production-ready code
+* Comprehensive documentation
+* Unit testing
+
+---
+
+# Core Modules
+
+## 1. Crash Detection Module
+
+Support detection of:
+
+* Segmentation faults
+* Illegal instructions
+* Floating point exceptions
+* Bus errors
+* Stack overflow
+* Abort signals
+* Assertion failures
+* Unhandled exceptions
+* Memory corruption
+* Deadlocks
+* Watchdog timeout
+* Infinite loops
+* Process termination
+* Unexpected exits
+
+Support both:
+
+* synchronous crashes
+* asynchronous failures
+
+---
+
+## 2. Signal Handler
+
+Implement signal handlers for:
+
+SIGSEGV
+
+SIGABRT
+
+SIGBUS
+
+SIGILL
+
+SIGFPE
+
+SIGTERM
+
+SIGINT
+
+SIGQUIT
+
+Handle signals safely.
+
+Avoid unsafe operations inside signal context.
+
+Use alternate signal stack.
+
+Support nested crash detection.
+
+---
+
+## 3. Stack Trace Generator
+
+Generate stack traces using:
+
+* libunwind
+* backtrace()
+* DWARF symbols
+* addr2line integration
+
+Include:
+
+* function names
+* source files
+* line numbers
+* module names
+* offsets
+
+Provide both:
+
+human readable
+
+machine readable
+
+formats.
+
+---
+
+## 4. Crash Report Generator
+
+Automatically generate reports containing:
+
+Timestamp
+
+PID
+
+Thread ID
+
+CPU information
+
+Memory usage
+
+OS version
+
+Application version
+
+Git commit hash
+
+Loaded libraries
+
+Signal received
+
+Fault address
+
+Registers
+
+Call stack
+
+Environment variables
+
+Configuration
+
+Open files
+
+Thread list
+
+Heap statistics
+
+Recent logs
+
+Custom metadata
+
+Crash UUID
+
+Session ID
+
+---
+
+## 5. Logging Framework
+
+Implement structured logging.
+
+Support:
+
+DEBUG
+
+INFO
+
+WARNING
+
+ERROR
+
+CRITICAL
+
+FATAL
+
+Support:
+
+* Console
+* File
+* JSON
+* Binary logs
+* Syslog
+* Remote logging
+
+Include:
+
+Timestamp
+
+Module
+
+Thread
+
+Severity
+
+File
+
+Function
+
+Line number
+
+Message
+
+Correlation ID
+
+Support:
+
+* log rotation
+* compression
+* filtering
+* asynchronous logging
+* buffered logging
+
+---
+
+## 6. Watchdog Manager
+
+Implement watchdog capable of monitoring:
+
+Main thread
+
+Worker threads
+
+Child processes
+
+Services
+
+Plugins
+
+Heartbeat intervals
+
+Timeouts
+
+Missed heartbeats
+
+Hung threads
+
+CPU starvation
+
+Deadlocks
+
+---
+
+## 7. Heartbeat System
+
+Provide APIs:
+
+heartbeat()
+
+kick()
+
+alive()
+
+register_task()
+
+unregister_task()
+
+Monitor heartbeat latency.
+
+Generate alerts.
+
+---
+
+## 8. Recovery Engine
+
+Support recovery strategies:
+
+Restart thread
+
+Restart module
+
+Restart service
+
+Restart process
+
+Restart application
+
+Rollback state
+
+Reload configuration
+
+Reconnect resources
+
+Clear caches
+
+Reinitialize hardware
+
+Graceful shutdown
+
+Safe mode
+
+Recovery policies should be configurable.
+
+---
+
+## 9. State Checkpointing
+
+Allow application state snapshots.
+
+Support:
+
+Memory snapshot
+
+Configuration snapshot
+
+Runtime state
+
+Persistent checkpoints
+
+Automatic restoration after restart.
+
+---
+
+## 10. Exception Framework
+
+Provide unified exception handling.
+
+Support:
+
+Nested exceptions
+
+Error propagation
+
+Error codes
+
+Rich error objects
+
+Context stack
+
+Recovery hints
+
+---
+
+## 11. Resource Monitoring
+
+Monitor:
+
+CPU
+
+RAM
+
+Disk
+
+Network
+
+Temperature
+
+File descriptors
+
+Sockets
+
+GPU
+
+Battery
+
+Detect resource exhaustion.
+
+---
+
+## 12. Memory Diagnostics
+
+Detect:
+
+Leaks
+
+Double free
+
+Use-after-free
+
+Buffer overflow
+
+Memory corruption
+
+Allocation statistics
+
+Fragmentation
+
+Integrate with:
+
+AddressSanitizer
+
+Valgrind
+
+LeakSanitizer
+
+---
+
+## 13. Health Monitoring Dashboard
+
+Expose:
+
+REST API
+
+CLI
+
+JSON API
+
+Metrics endpoint
+
+Display:
+
+Current status
+
+Health score
+
+Last crash
+
+Recovery history
+
+Thread status
+
+Watchdog status
+
+Heartbeat status
+
+Memory
+
+CPU
+
+Uptime
+
+---
+
+## 14. Metrics Collection
+
+Export:
+
+Prometheus
+
+OpenTelemetry
+
+JSON
+
+CSV
+
+Metrics:
+
+Crash count
+
+Restart count
+
+Recovery latency
+
+Memory usage
+
+CPU usage
+
+Thread count
+
+Watchdog events
+
+Heartbeat delay
+
+---
+
+## 15. Configuration System
+
+Support:
+
+JSON
+
+YAML
+
+TOML
+
+INI
+
+Environment variables
+
+Hot reload configuration.
+
+---
+
+## 16. Notification System
+
+Send alerts through:
+
+Email
+
+Slack
+
+Discord
+
+Webhook
+
+MQTT
+
+SMS
+
+Alert on:
+
+Crash
+
+Restart
+
+Repeated failures
+
+Watchdog timeout
+
+Memory leak
+
+High CPU
+
+Low disk
+
+---
+
+## 17. Persistent Crash Database
+
+Store crash history.
+
+Support:
+
+SQLite
+
+PostgreSQL
+
+JSON archive
+
+Enable:
+
+Search
+
+Filtering
+
+Statistics
+
+Crash trends
+
+---
+
+## 18. Crash Analyzer
+
+Automatically group crashes by:
+
+Signature
+
+Call stack
+
+Module
+
+Signal
+
+Generate frequency reports.
+
+Detect duplicate crashes.
+
+---
+
+## 19. Testing Framework
+
+Include:
+
+Unit tests
+
+Integration tests
+
+Stress tests
+
+Fault injection
+
+Signal injection
+
+Memory corruption simulation
+
+Watchdog timeout simulation
+
+Chaos testing
+
+Recovery validation
+
+Target >90% code coverage.
+
+---
+
+## 20. Security
+
+Prevent:
+
+Sensitive data leakage
+
+Secret logging
+
+Credential exposure
+
+Support:
+
+Log redaction
+
+Encryption
+
+Secure crash reports
+
+Permission checks
+
+---
+
+# Public APIs
+
+Design clean APIs such as:
+
+initialize()
+
+shutdown()
+
+register_watchdog()
+
+heartbeat()
+
+log_debug()
+
+log_error()
+
+capture_crash()
+
+generate_report()
+
+register_recovery()
+
+checkpoint()
+
+restore()
+
+register_callback()
+
+subscribe_events()
+
+health_status()
+
+metrics()
+
+---
+
+# Event System
+
+Support callbacks:
+
+OnCrash
+
+OnRecovery
+
+OnTimeout
+
+OnRestart
+
+OnHeartbeatLost
+
+OnMemoryLeak
+
+OnHighCPU
+
+OnShutdown
+
+---
+
+# Plugin Architecture
+
+Allow plugins for:
+
+Recovery
+
+Logging
+
+Metrics
+
+Storage
+
+Notifications
+
+Crash analysis
+
+Health monitoring
+
+---
+
+# Performance Requirements
+
+Crash detection latency <5 ms
+
+Watchdog overhead <1% CPU
+
+Logging throughput >100,000 messages/sec
+
+Recovery time <2 seconds
+
+Memory overhead <20 MB
+
+Thread-safe
+
+Lock-free where appropriate
+
+Zero memory leaks
+
+---
+
+# Project Structure
+
+Organize into:
+
+/core
+
+/watchdog
+
+/logger
+
+/crash
+
+/recovery
+
+/metrics
+
+/dashboard
+
+/storage
+
+/tests
+
+/examples
+
+/docs
+
+/scripts
+
+/include
+
+/src
+
+---
+
+# Documentation
+
+Generate:
+
+Architecture diagram
+
+Sequence diagrams
+
+API documentation
+
+Developer guide
+
+User guide
+
+Configuration reference
+
+Recovery flowcharts
+
+Deployment guide
+
+Troubleshooting guide
+
+Best practices
+
+---
+
+# Example Applications
+
+Include examples:
+
+Simple application monitoring
+
+Multi-threaded service
+
+Embedded Linux daemon
+
+IoT device supervisor
+
+Robot controller
+
+Server application
+
+Plugin example
+
+Recovery demo
+
+---
+
+# Deliverables
+
+Provide:
+
+* Production-quality source code
+* Modular architecture
+* CMake build system
+* Comprehensive documentation
+* Unit and integration tests
+* Sample configurations
+* Example applications
+* Benchmark results
+* Logging and metrics examples
+* CI/CD pipeline configuration (GitHub Actions)
+* Docker support
+* Static analysis configuration
+* Code formatting configuration
+* Automated testing scripts
+
+The generated code should follow modern C++20 best practices, use RAII, smart pointers, constexpr where appropriate, strong type safety, modular design, minimal external dependencies, clear separation of concerns, and be written with maintainability, scalability, and fault tolerance as primary goals.
