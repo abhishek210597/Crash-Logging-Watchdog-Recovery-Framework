@@ -223,6 +223,9 @@ CMAKE_STRIP:FILEPATH=C:/Users/DELL/.platformio/packages/toolchain-riscv32-esp/bi
 //Path to a program.
 CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 
+//The CMake toolchain file
+CMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/DELL/.platformio/packages/framework-espidf/tools/cmake/toolchain-esp32c6.cmake
+
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
 // during the make.  This is useful for debugging only. With Visual

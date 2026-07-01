@@ -1,7 +1,7 @@
 {
     "version":            "1.3",
     "project_name":       "Crash_Logging_Watchdoc_Recovery_Framework",
-    "project_version":    "1",
+    "project_version":    "27fc8df-dirty",
     "project_path":       "C:/Users/DELL/Desktop/rutvik/PROJECT_CV/RTOS_Based_Sensor_Data_Logger_with_CLI/Crash_Logging_Watchdoc_Recovery_Framework",
     "idf_path":           "C:/Users/DELL/.platformio/packages/framework-espidf",
     "build_dir":          "C:/Users/DELL/Desktop/rutvik/PROJECT_CV/RTOS_Based_Sensor_Data_Logger_with_CLI/Crash_Logging_Watchdoc_Recovery_Framework/.b/cezerio_dev_esp32c6",
