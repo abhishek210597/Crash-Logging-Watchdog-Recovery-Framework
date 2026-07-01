@@ -22,6 +22,14 @@ void RecoveryEngine::init() {
         nvs_flash_init();
     }
 
+    // On power-on or USB download reset, always clear stale crash counters
+    esp_reset_reason_t reason = esp_reset_reason();
+    if (reason == ESP_RST_POWERON || reason == ESP_RST_DEEPSLEEP || reason == ESP_RST_UNKNOWN) {
+        clearBootStats();
+        CRF_LOG_INFO("Power-on reset detected. Boot stats cleared.");
+        return;
+    }
+
     checkBootLoop();
 }
 
@@ -65,13 +73,10 @@ void RecoveryEngine::checkBootLoop() {
                 CRF_LOG_WARN("Consecutive crash detected. Crash count: %u/3", crash_count);
             }
         } else {
-            // Normal software reset or power on reset reset the crash counter if it stays alive > 20s
-            // We can do this in a check, but for now we write the stats
-            if (reason == ESP_RST_POWERON || reason == ESP_RST_SW) {
-                crash_count = 0;
-                safe_mode_flag = 0;
-                m_crash_count = 0;
-            }
+            // Normal software reset — clear the crash counter
+            crash_count = 0;
+            safe_mode_flag = 0;
+            m_crash_count = 0;
         }
 
         m_safe_mode = (safe_mode_flag != 0);

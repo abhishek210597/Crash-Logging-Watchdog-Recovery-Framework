@@ -197,7 +197,9 @@ extern "C" void __wrap___assert_func(const char* file, int line, const char* fun
 #if defined(__riscv)
     register uint32_t* fp asm("s0"); // Frame pointer in RISC-V (s0 is x8)
     uint32_t depth = 0;
-    while (fp && depth < 16) {
+    // Validate fp is within main RAM region (0x40800000 - 0x40880000 for ESP32-C6)
+    while (fp && depth < 16 &&
+           (uint32_t)fp >= 0x40800000 && (uint32_t)fp < 0x40880000) {
         uint32_t pc = *(fp - 1); // PC address is stored just below frame pointer on stack
         rtc_crash_signature.call_stack[depth++] = pc;
         fp = (uint32_t*)(*(fp - 2)); // Previous frame pointer
